@@ -15,9 +15,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.1'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'junit:junit:4.13.1'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'javax.servlet:jstl:1.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
@@ -44,7 +44,7 @@ test {
             getClassDirectories().setFrom(classDirectories.files.collect {
                 fileTree(dir: it,
                         exclude: [ // Exclude the POJO package
-                                   'com.abernathyclinic.mediscreennotes.domain/*.class'
+                                   'com/abernathyclinic/mediscreennotes/domain/*.class'
                         ]
                 )
             })
@@ -54,7 +54,7 @@ test {
     jacocoTestCoverageVerification {
         violationRules {
             rule {
-                exclude 'com.abernathyclinic.mediscreennotes.domain/*.class' // Exclude the POJO package
+                exclude 'com/abernathyclinic/mediscreennotes/domain/*.class' // Exclude the POJO package
                 limit {
                     counter = 'LINE'
                     value = 'COVEREDRATIO'

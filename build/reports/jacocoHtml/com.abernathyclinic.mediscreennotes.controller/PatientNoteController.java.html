@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientNoteController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Projet9_MediscreenNotes</a> &gt; <a href="index.source.html" class="el_package">com.abernathyclinic.mediscreennotes.controller</a> &gt; <span class="el_source">PatientNoteController.java</span></div><h1>PatientNoteController.java</h1><pre class="source lang-java linenums">package com.abernathyclinic.mediscreennotes.controller;
+
+import com.abernathyclinic.mediscreennotes.Exception.PatientNoteNotFoundException;
+import com.abernathyclinic.mediscreennotes.domain.PatientNote;
+import com.abernathyclinic.mediscreennotes.repository.PatientNoteRepository;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping(&quot;api/&quot;)
+<span class="fc" id="L15">public class PatientNoteController {</span>
+    @Autowired
+    private PatientNoteRepository patientNoteRepository;
+
+    @ApiOperation(value = &quot;GET all Patient Notes in a list&quot;)
+    @GetMapping(&quot;/getAll&quot;)
+    public List&lt;PatientNote&gt; getAllPatientNotes() {
+<span class="fc" id="L22">        return patientNoteRepository.findAll();</span>
+    }
+
+    @ApiOperation(value = &quot;GET &quot;)
+    @GetMapping(&quot;/getPatientNoteByUuid/{uuid}&quot;)
+    public List&lt;PatientNote&gt; getPatientNoteByUuid(@PathVariable(&quot;uuid&quot;)UUID uuid) throws PatientNoteNotFoundException {
+<span class="fc" id="L28">        List&lt;PatientNote&gt; patientNoteList = patientNoteRepository.findPatientNoteByUuid(uuid);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if(patientNoteList.isEmpty()) {</span>
+<span class="fc" id="L30">            throw new PatientNoteNotFoundException(&quot;Patient's note for uuid : &quot; + uuid + &quot; could not be in the database.&quot;);</span>
+        }
+<span class="fc" id="L32">        return patientNoteList;</span>
+    }
+
+    @PostMapping(&quot;/addPatientNote&quot;)
+    public String addPatientNote(@RequestBody PatientNote patientNote) {
+<span class="fc" id="L37">        patientNoteRepository.save(patientNote);</span>
+<span class="fc" id="L38">        return &quot;Patient's notes saved&quot;;</span>
+    }
+
+    @PutMapping(&quot;/editPatientNote/{id}&quot;)
+    public String editPatientNote(@PathVariable(&quot;id&quot;) String id, @RequestBody PatientNote patientNote) {
+<span class="fc" id="L43">        PatientNote patientNoteToUpdate = patientNoteRepository.findById(id).orElseThrow(() -&gt; new PatientNoteNotFoundException(&quot;Patient's note with id : &quot; + id + &quot; could not be in the database.&quot;));</span>
+<span class="fc" id="L44">        patientNoteToUpdate.setNotes(patientNote.getNotes());</span>
+<span class="fc" id="L45">        patientNoteRepository.save(patientNoteToUpdate);</span>
+<span class="fc" id="L46">        return &quot;Patient's notes updated&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
