@@ -1,4 +1,8 @@
+webController/NotesWebControllerTests.java
+ webController.NotesWebControllerTests
 PatientNoteRepositoryTests.java
  PatientNoteRepositoryTests
+webController/HomeWebControllerTests.java
+ webController.HomeWebControllerTests
 PatientNoteControllerTests.java
  PatientNoteControllerTests

@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+
+  mediscreennotes:
+    container_name: mediscreennotes
+    image: mediscreennotes
+    build: ./MediscreenNotesContainer
+    restart: always
+    network_mode: host
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: mongo
+    image: mongo
+    restart: always
+    network_mode: bridge
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-volume:/data/db
+
+volumes:
+  database-volume:
+  mongo-volume:

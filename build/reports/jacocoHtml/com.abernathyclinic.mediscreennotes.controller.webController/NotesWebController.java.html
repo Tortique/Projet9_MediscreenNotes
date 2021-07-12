@@ -2,7 +2,6 @@
 
 import com.abernathyclinic.mediscreennotes.domain.PatientNote;
 import com.abernathyclinic.mediscreennotes.repository.PatientNoteRepository;
-import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,54 +10,56 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Optional;
 
 @Controller
-<span class="nc" id="L18">public class NotesWebController {</span>
+@ApiIgnore
+<span class="fc" id="L19">public class NotesWebController {</span>
 
     @Autowired
     private PatientNoteRepository patientNoteRepository;
 
     @GetMapping(&quot;/notes/list&quot;)
     public ModelAndView getAllPatientNotes() {
-<span class="nc" id="L25">        ModelAndView modelAndView = new ModelAndView();</span>
-<span class="nc" id="L26">        modelAndView.addObject(&quot;notes&quot;, patientNoteRepository.findAll());</span>
-<span class="nc" id="L27">        modelAndView.setViewName(&quot;notes/list&quot;);</span>
-<span class="nc" id="L28">        return modelAndView;</span>
+<span class="fc" id="L26">        ModelAndView modelAndView = new ModelAndView();</span>
+<span class="fc" id="L27">        modelAndView.addObject(&quot;notes&quot;, patientNoteRepository.findAll());</span>
+<span class="fc" id="L28">        modelAndView.setViewName(&quot;notes/list&quot;);</span>
+<span class="fc" id="L29">        return modelAndView;</span>
     }
 
     @GetMapping(&quot;/notes/add&quot;)
     public ModelAndView addPatientNotes(Model model) {
-<span class="nc" id="L33">        PatientNote patientNote = new PatientNote();</span>
-<span class="nc" id="L34">        model.addAttribute(&quot;note&quot;, patientNote);</span>
-<span class="nc" id="L35">        return new ModelAndView(&quot;notes/add&quot;);</span>
+<span class="fc" id="L34">        PatientNote patientNote = new PatientNote();</span>
+<span class="fc" id="L35">        model.addAttribute(&quot;note&quot;, patientNote);</span>
+<span class="fc" id="L36">        return new ModelAndView(&quot;notes/add&quot;);</span>
     }
 
     @PostMapping(&quot;/notes/add&quot;)
     public ModelAndView addPatientNotesProcess(@ModelAttribute(&quot;note&quot;) PatientNote patientNote) {
-<span class="nc" id="L40">        ModelAndView modelAndView = new ModelAndView();</span>
-<span class="nc" id="L41">        patientNoteRepository.save(patientNote);</span>
-<span class="nc" id="L42">        modelAndView.setViewName(&quot;redirect:/notes/list&quot;);</span>
-<span class="nc" id="L43">        return modelAndView;</span>
+<span class="fc" id="L41">        ModelAndView modelAndView = new ModelAndView();</span>
+<span class="fc" id="L42">        patientNoteRepository.save(patientNote);</span>
+<span class="fc" id="L43">        modelAndView.setViewName(&quot;redirect:/notes/list&quot;);</span>
+<span class="fc" id="L44">        return modelAndView;</span>
     }
 
     @GetMapping(&quot;/notes/edit/{id}&quot;)
     public ModelAndView editPatientNote(@PathVariable(&quot;id&quot;) String id, Model model) {
-<span class="nc" id="L48">        Optional&lt;PatientNote&gt; patientNote = patientNoteRepository.findById(id);</span>
-<span class="nc" id="L49">        model.addAttribute(&quot;noteInfo&quot;, patientNote.get());</span>
-<span class="nc" id="L50">        model.addAttribute(&quot;note&quot;, patientNote.get());</span>
-<span class="nc" id="L51">        return new ModelAndView(&quot;notes/edit&quot;);</span>
+<span class="fc" id="L49">        Optional&lt;PatientNote&gt; patientNote = patientNoteRepository.findById(id);</span>
+<span class="fc" id="L50">        model.addAttribute(&quot;noteInfo&quot;, patientNote.get());</span>
+<span class="fc" id="L51">        model.addAttribute(&quot;note&quot;, patientNote.get());</span>
+<span class="fc" id="L52">        return new ModelAndView(&quot;notes/edit&quot;);</span>
     }
 
     @PostMapping(&quot;/notes/edit/{id}&quot;)
     public ModelAndView editPatientNoteProcess(@PathVariable(&quot;id&quot;) String id, @ModelAttribute(&quot;note&quot;) PatientNote patientNote) {
-<span class="nc" id="L56">        ModelAndView modelAndView = new ModelAndView();</span>
-<span class="nc" id="L57">        PatientNote patientNoteToUpdate = patientNoteRepository.findById(id).get();</span>
-<span class="nc" id="L58">        patientNoteToUpdate.setNotes(patientNote.getNotes());</span>
-<span class="nc" id="L59">        patientNoteRepository.save(patientNoteToUpdate);</span>
-<span class="nc" id="L60">        modelAndView.setViewName(&quot;redirect:/notes/list&quot;);</span>
-<span class="nc" id="L61">        return modelAndView;</span>
+<span class="fc" id="L57">        ModelAndView modelAndView = new ModelAndView();</span>
+<span class="fc" id="L58">        PatientNote patientNoteToUpdate = patientNoteRepository.findById(id).get();</span>
+<span class="fc" id="L59">        patientNoteToUpdate.setNotes(patientNote.getNotes());</span>
+<span class="fc" id="L60">        patientNoteRepository.save(patientNoteToUpdate);</span>
+<span class="fc" id="L61">        modelAndView.setViewName(&quot;redirect:/notes/list&quot;);</span>
+<span class="fc" id="L62">        return modelAndView;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

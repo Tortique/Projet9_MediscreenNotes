@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api/notes")
 public class PatientNoteController {
     @Autowired
     private PatientNoteRepository patientNoteRepository;
@@ -20,6 +20,12 @@ public class PatientNoteController {
     @GetMapping("/getAll")
     public List<PatientNote> getAllPatientNotes() {
         return patientNoteRepository.findAll();
+    }
+
+    @ApiOperation(value = "GET Patient's Notes with this id")
+    @GetMapping("/getPatientNoteById/{id}")
+    public PatientNote getPatientNoteById(@PathVariable("id") String id) throws PatientNoteNotFoundException {
+        return patientNoteRepository.findById(id).orElseThrow(() -> new PatientNoteNotFoundException("Patient's note for id : " + id + " could not be in the database"));
     }
 
     @ApiOperation(value = "GET Patient's Notes for Patient with this uuid")

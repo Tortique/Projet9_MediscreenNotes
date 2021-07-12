@@ -38,7 +38,7 @@ public class PatientNoteControllerTests {
     public void getAllPatientNotesTest() throws Exception {
         when(patientNoteRepository.findAll()).thenReturn(new ArrayList<>());
 
-        MvcResult mvcResult = mockMvc.perform(get("/api/getAll")).andDo(print())
+        MvcResult mvcResult = mockMvc.perform(get("/api/notes/getAll")).andDo(print())
                 .andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -53,7 +53,7 @@ public class PatientNoteControllerTests {
         patientNoteList.add(patientNote);
         when(patientNoteRepository.findPatientNoteByUuid(any(UUID.class))).thenReturn(patientNoteList);
 
-        MvcResult mvcResult = mockMvc.perform(get("/api/getPatientNoteByUuid/3fa85f64-5717-4562-b3fc-2c963f66afa6"))
+        MvcResult mvcResult = mockMvc.perform(get("/api/notes/getPatientNoteByUuid/3fa85f64-5717-4562-b3fc-2c963f66afa6"))
                 .andDo(print()).andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -63,7 +63,29 @@ public class PatientNoteControllerTests {
 
     @Test
     public void getPatientNoteByUuidThrownNotFoundExceptionTest() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/api/getPatientNoteByUuid/3fa85f64-5717-4562-b3fc-2c963f66afa5"))
+        MvcResult mvcResult = mockMvc.perform(get("/api/notes/getPatientNoteByUuid/3fa85f64-5717-4562-b3fc-2c963f66afa5"))
+                .andDo(print()).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+
+        assertEquals(404, status);
+    }
+
+    @Test
+    public void getPatientNoteByIdTest() throws Exception {
+        PatientNote patientNote = new PatientNote(uuid, "notes");
+        when(patientNoteRepository.findById("id")).thenReturn(java.util.Optional.of(patientNote));
+
+        MvcResult mvcResult = mockMvc.perform(get("/api/notes/getPatientNoteById/id"))
+                .andDo(print()).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+
+        assertEquals(200, status);
+        verify(patientNoteRepository, times(1)).findById("id");
+    }
+
+    @Test
+    public void getPatientNoteByIdThrownNotFoundExceptionTest() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(get("/api/notes/getPatientNoteById/id"))
                 .andDo(print()).andReturn();
         int status = mvcResult.getResponse().getStatus();
 
@@ -76,7 +98,7 @@ public class PatientNoteControllerTests {
 
         when(patientNoteRepository.save(patientNote)).thenReturn(patientNote);
 
-        MvcResult mvcResult = mockMvc.perform(post("/api/addPatientNote")
+        MvcResult mvcResult = mockMvc.perform(post("/api/notes/addPatientNote")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"uuid\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\"notes\":\"notes\"}"))
                 .andDo(print()).andReturn();
@@ -92,7 +114,7 @@ public class PatientNoteControllerTests {
         when(patientNoteRepository.findById("id")).thenReturn(java.util.Optional.of(patientNote));
         when(patientNoteRepository.save(patientNote)).thenReturn(patientNote);
 
-        MvcResult mvcResult = mockMvc.perform(put("/api/editPatientNote/id")
+        MvcResult mvcResult = mockMvc.perform(put("/api/notes/editPatientNote/id")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"uuid\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\"notes\":\"notes\"}"))
                 .andDo(print())
@@ -105,7 +127,7 @@ public class PatientNoteControllerTests {
 
     @Test
     public void editPatientNoteThrownNotFoundExceptionTest() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(put("/api/editPatientNote/id")
+        MvcResult mvcResult = mockMvc.perform(put("/api/notes/editPatientNote/id")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"uuid\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\"notes\":\"notes\"}"))
                 .andDo(print())

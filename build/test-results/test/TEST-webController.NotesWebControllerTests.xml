@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="webController.NotesWebControllerTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-07-12T14:06:44" hostname="DESKTOP-NQCJ011" time="0.053">
+  <properties/>
+  <testcase name="getAllPatientNotesTest()" classname="webController.NotesWebControllerTests" time="0.01"/>
+  <testcase name="getEditPatientNoteTest()" classname="webController.NotesWebControllerTests" time="0.012"/>
+  <testcase name="getAddPatientNotesTest()" classname="webController.NotesWebControllerTests" time="0.007"/>
+  <testcase name="getEditPatientNoteProcessTest()" classname="webController.NotesWebControllerTests" time="0.012"/>
+  <testcase name="getAddPatientNotesProcessTest()" classname="webController.NotesWebControllerTests" time="0.005"/>
+  <system-out><![CDATA[2021-07-12 16:06:43.414  INFO 11904 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [webController.NotesWebControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-07-12 16:06:43.417  INFO 11904 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-07-12 16:06:43.418  INFO 11904 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1651e9dc, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3bce8378, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@6bda9f56, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@69917239, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@709779de, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3f8df1f7, org.springframework.test.context.transaction.TransactionalTestExecutionListener@12f97f, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@627053fe, org.springframework.test.context.event.EventPublishingTestExecutionListener@29629fe7, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7930c175, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6efe062d, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@e7157af, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@33517c21, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@4c152857, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@52c48096]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.5)
+
+2021-07-12 16:06:43.441  INFO 11904 --- [    Test worker] webController.NotesWebControllerTests    : Starting NotesWebControllerTests using Java 1.8.0_265 on DESKTOP-NQCJ011 with PID 11904 (started by adrie in C:\Users\adrie\Desktop\OC-Projet\Projet9_MediscreenNotes)
+2021-07-12 16:06:43.441  INFO 11904 --- [    Test worker] webController.NotesWebControllerTests    : No active profile set, falling back to default profiles: default
+2021-07-12 16:06:44.314  INFO 11904 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-07-12 16:06:44.479  INFO 11904 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2021-07-12 16:06:44.480  INFO 11904 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2021-07-12 16:06:44.480  INFO 11904 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2021-07-12 16:06:44.519  INFO 11904 --- [    Test worker] webController.NotesWebControllerTests    : Started NotesWebControllerTests in 1.099 seconds (JVM running for 11.181)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

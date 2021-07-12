@@ -1,14 +1,14 @@
 com/abernathyclinic/mediscreennotes/MediscreenNotes.java
  com.abernathyclinic.mediscreennotes.MediscreenNotes
-com/abernathyclinic/mediscreennotes/domain/PatientNote.java
- com.abernathyclinic.mediscreennotes.domain.PatientNote
 com/abernathyclinic/mediscreennotes/repository/PatientNoteRepository.java
  com.abernathyclinic.mediscreennotes.repository.PatientNoteRepository
+com/abernathyclinic/mediscreennotes/domain/PatientNote.java
+ com.abernathyclinic.mediscreennotes.domain.PatientNote
 com/abernathyclinic/mediscreennotes/controller/webController/NotesWebController.java
  com.abernathyclinic.mediscreennotes.controller.webController.NotesWebController
-com/abernathyclinic/mediscreennotes/controller/webController/HomeWebController.java
- com.abernathyclinic.mediscreennotes.controller.webController.HomeWebController
 com/abernathyclinic/mediscreennotes/Exception/PatientNoteNotFoundException.java
  com.abernathyclinic.mediscreennotes.Exception.PatientNoteNotFoundException
+com/abernathyclinic/mediscreennotes/controller/webController/HomeWebController.java
+ com.abernathyclinic.mediscreennotes.controller.webController.HomeWebController
 com/abernathyclinic/mediscreennotes/controller/PatientNoteController.java
  com.abernathyclinic.mediscreennotes.controller.PatientNoteController

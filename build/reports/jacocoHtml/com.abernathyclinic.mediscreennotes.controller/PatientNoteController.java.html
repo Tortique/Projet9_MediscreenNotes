@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(&quot;api/&quot;)
+@RequestMapping(&quot;api/notes&quot;)
 <span class="fc" id="L15">public class PatientNoteController {</span>
     @Autowired
     private PatientNoteRepository patientNoteRepository;
@@ -22,28 +22,36 @@ import java.util.UUID;
 <span class="fc" id="L22">        return patientNoteRepository.findAll();</span>
     }
 
-    @ApiOperation(value = &quot;GET &quot;)
-    @GetMapping(&quot;/getPatientNoteByUuid/{uuid}&quot;)
-    public List&lt;PatientNote&gt; getPatientNoteByUuid(@PathVariable(&quot;uuid&quot;)UUID uuid) throws PatientNoteNotFoundException {
-<span class="fc" id="L28">        List&lt;PatientNote&gt; patientNoteList = patientNoteRepository.findPatientNoteByUuid(uuid);</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if(patientNoteList.isEmpty()) {</span>
-<span class="fc" id="L30">            throw new PatientNoteNotFoundException(&quot;Patient's note for uuid : &quot; + uuid + &quot; could not be in the database.&quot;);</span>
-        }
-<span class="fc" id="L32">        return patientNoteList;</span>
+    @ApiOperation(value = &quot;GET Patient's Notes with this id&quot;)
+    @GetMapping(&quot;/getPatientNoteById/{id}&quot;)
+    public PatientNote getPatientNoteById(@PathVariable(&quot;id&quot;) String id) throws PatientNoteNotFoundException {
+<span class="fc" id="L28">        return patientNoteRepository.findById(id).orElseThrow(() -&gt; new PatientNoteNotFoundException(&quot;Patient's note for id : &quot; + id + &quot; could not be in the database&quot;));</span>
     }
 
+    @ApiOperation(value = &quot;GET Patient's Notes for Patient with this uuid&quot;)
+    @GetMapping(&quot;/getPatientNoteByUuid/{uuid}&quot;)
+    public List&lt;PatientNote&gt; getPatientNoteByUuid(@PathVariable(&quot;uuid&quot;) UUID uuid) throws PatientNoteNotFoundException {
+<span class="fc" id="L34">        List&lt;PatientNote&gt; patientNoteList = patientNoteRepository.findPatientNoteByUuid(uuid);</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (patientNoteList.isEmpty()) {</span>
+<span class="fc" id="L36">            throw new PatientNoteNotFoundException(&quot;Patient's note for uuid : &quot; + uuid + &quot; could not be in the database.&quot;);</span>
+        }
+<span class="fc" id="L38">        return patientNoteList;</span>
+    }
+
+    @ApiOperation(value = &quot;ADD a new Patient's Note&quot;)
     @PostMapping(&quot;/addPatientNote&quot;)
     public String addPatientNote(@RequestBody PatientNote patientNote) {
-<span class="fc" id="L37">        patientNoteRepository.save(patientNote);</span>
-<span class="fc" id="L38">        return &quot;Patient's notes saved&quot;;</span>
+<span class="fc" id="L44">        patientNoteRepository.save(patientNote);</span>
+<span class="fc" id="L45">        return &quot;Patient's notes saved&quot;;</span>
     }
 
+    @ApiOperation(value = &quot;EDIT Patient's Note with this id&quot;)
     @PutMapping(&quot;/editPatientNote/{id}&quot;)
     public String editPatientNote(@PathVariable(&quot;id&quot;) String id, @RequestBody PatientNote patientNote) {
-<span class="fc" id="L43">        PatientNote patientNoteToUpdate = patientNoteRepository.findById(id).orElseThrow(() -&gt; new PatientNoteNotFoundException(&quot;Patient's note with id : &quot; + id + &quot; could not be in the database.&quot;));</span>
-<span class="fc" id="L44">        patientNoteToUpdate.setNotes(patientNote.getNotes());</span>
-<span class="fc" id="L45">        patientNoteRepository.save(patientNoteToUpdate);</span>
-<span class="fc" id="L46">        return &quot;Patient's notes updated&quot;;</span>
+<span class="fc" id="L51">        PatientNote patientNoteToUpdate = patientNoteRepository.findById(id).orElseThrow(() -&gt; new PatientNoteNotFoundException(&quot;Patient's note with id : &quot; + id + &quot; could not be in the database.&quot;));</span>
+<span class="fc" id="L52">        patientNoteToUpdate.setNotes(patientNote.getNotes());</span>
+<span class="fc" id="L53">        patientNoteRepository.save(patientNoteToUpdate);</span>
+<span class="fc" id="L54">        return &quot;Patient's notes updated&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

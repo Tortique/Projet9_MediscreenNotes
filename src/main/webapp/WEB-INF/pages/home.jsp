@@ -24,6 +24,9 @@
                 <h3>
                     <a href="notes/add"> Add New Patient's Notes</a>
                 </h3>
+                <h3>
+                    <a href="http://localhost:8083"> Diabetes Home</a>
+                </h3>
             </div>
         </div>
     </div>

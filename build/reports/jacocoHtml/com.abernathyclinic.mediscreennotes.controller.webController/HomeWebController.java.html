@@ -2,13 +2,15 @@
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
-<span class="nc" id="L7">public class HomeWebController {</span>
+@ApiIgnore
+<span class="fc" id="L9">public class HomeWebController {</span>
 
     @GetMapping({&quot;/&quot;, &quot;/home&quot;})
     public String home() {
-<span class="nc" id="L11">        return &quot;home&quot;;</span>
+<span class="fc" id="L13">        return &quot;home&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
